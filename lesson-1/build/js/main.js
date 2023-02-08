@@ -1,0 +1,11 @@
+"use strict";
+let username = 'Abdulmalik';
+let age = 25;
+let isMale = true;
+let hobbies = ['football', 'coding', 'reading'];
+let address = ['Nigeria', 'Lagos', 'Ikeja'];
+console.log(address, hobbies, isMale, age, username);
+let a = 10;
+let b = 20;
+let c = a + b;
+console.log(c);
