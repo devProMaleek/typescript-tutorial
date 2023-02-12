@@ -121,3 +121,30 @@ const numberOrString = (value: number | string): string => {
 
   return createError('Invalid');
 };
+
+// Type Casting || Type Assertion
+
+type One = string;
+type Two = string | number;
+type Three = 'hello';
+
+const addOrConcat = (a: number, b: number, c: 'add' | 'concat'): number | string => {
+  if (c === 'add') {
+    return a + b;
+  } else {
+    return a.toString() + b.toString();
+  }
+};
+
+let myVal: string = addOrConcat(10, 20, 'concat') as string;
+
+let nextVal: number = addOrConcat(10, 20, 'concat') as number;
+
+// Double Casting or Forced Casting
+(10 as unknown | number) as string;
+
+// Usage of Casting
+
+const img = document.querySelector('img') as HTMLImageElement;
+
+img.src
