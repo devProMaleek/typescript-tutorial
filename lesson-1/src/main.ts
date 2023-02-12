@@ -141,10 +141,148 @@ let myVal: string = addOrConcat(10, 20, 'concat') as string;
 let nextVal: number = addOrConcat(10, 20, 'concat') as number;
 
 // Double Casting or Forced Casting
-(10 as unknown | number) as string;
+10 as unknown | number as string;
 
 // Usage of Casting
 
 const img = document.querySelector('img') as HTMLImageElement;
 
-img.src
+// img.src
+
+//Typescript Classes (w3schools)
+
+// interface Shape {
+//   getArea: () => number;
+// }
+
+// class Rectangle implements Shape {
+//   constructor(private width: number, private height: number) {
+//   }
+
+//   getArea() {
+//     return this.width * this.height;
+//   }
+// }
+
+// const rectangle = new Rectangle(10, 20);
+// console.log(rectangle.getArea());
+
+interface Shape {
+  getArea: () => number;
+}
+
+class Rectangle implements Shape {
+  public constructor(protected readonly width: number, protected readonly height: number) {}
+
+  public getArea(): number {
+    return this.width * this.height;
+  }
+}
+
+class Square extends Rectangle {
+  public constructor(length: number) {
+    super(length, length);
+  }
+  // getArea gets inherited from Rectangle
+}
+
+const mySq = new Square(20);
+
+console.log(mySq.getArea());
+
+class Coder {
+  public secondLanguage!: string;
+
+  constructor(
+    public readonly name: string,
+    private age: number,
+    public music: string,
+    protected language: string = 'TypeScript'
+  ) {
+    this.name = name;
+    this.age = age;
+    this.music = music;
+    this.language = language;
+    this.secondLanguage = 'Python';
+  }
+
+  public getAge(): string {
+    return `My age is ${this.age}`;
+  }
+}
+
+const malik = new Coder('Abdulmalik', 25, 'Hip-Hop');
+console.log(malik.getAge());
+
+class WebDev extends Coder {
+  constructor(name: string, age: number, music: string, public readonly framework: string = 'Next.js') {
+    super(name, age, music);
+    this.framework = framework;
+  }
+
+  public getLanguage(): string {
+    return `My language is ${this.language} and my framework is ${this.framework}`;
+  }
+}
+
+const malik2 = new WebDev('Abdulmalik', 25, 'Hip-Hop');
+console.log(malik2.getLanguage());
+
+interface Musician {
+  name: string;
+  instrument: string;
+  play: (action: string) => string;
+}
+
+class Guitarist implements Musician {
+  constructor(public name: string, public instrument: string) {
+    this.name = name;
+    this.instrument = instrument;
+  }
+
+  public play(action: string): string {
+    return `${this.name} is ${action}ing on the ${this.instrument}`;
+  }
+}
+
+const malik3 = new Guitarist('Abdulmalik', 'Guitar');
+console.log(malik3.play('play'));
+
+// Static Class Members
+
+class Peeps {
+  static count: number = 0;
+
+  static getCount(): number {
+    return Peeps.count;
+  }
+
+  public id: number;
+
+  constructor(public name: string) {
+    this.name = name;
+    this.id = ++Peeps.count;
+  }
+}
+
+// Getters and Setters
+class Bands {
+  private dataState: string[];
+
+  constructor() {
+    this.dataState = [];
+  }
+
+  public get data(): string[] {
+    return this.dataState;
+  }
+
+  public set data(value: string[]) {
+    if (Array.isArray(value) && value.every((item) => typeof item === 'string')) {
+      this.dataState = value;
+      return;
+    } else {
+      throw new Error('Data must be an array of strings');
+    }
+  }
+}

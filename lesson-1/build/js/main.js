@@ -95,4 +95,92 @@ let nextVal = addOrConcat(10, 20, 'concat');
 10;
 // Usage of Casting
 const img = document.querySelector('img');
-img.src;
+class Rectangle {
+    constructor(width, height) {
+        this.width = width;
+        this.height = height;
+    }
+    getArea() {
+        return this.width * this.height;
+    }
+}
+class Square extends Rectangle {
+    constructor(length) {
+        super(length, length);
+    }
+}
+const mySq = new Square(20);
+console.log(mySq.getArea());
+class Coder {
+    constructor(name, age, music, language = 'TypeScript') {
+        this.name = name;
+        this.age = age;
+        this.music = music;
+        this.language = language;
+        this.name = name;
+        this.age = age;
+        this.music = music;
+        this.language = language;
+        this.secondLanguage = 'Python';
+    }
+    getAge() {
+        return `My age is ${this.age}`;
+    }
+}
+const malik = new Coder('Abdulmalik', 25, 'Hip-Hop');
+console.log(malik.getAge());
+class WebDev extends Coder {
+    constructor(name, age, music, framework = 'Next.js') {
+        super(name, age, music);
+        this.framework = framework;
+        this.framework = framework;
+    }
+    getLanguage() {
+        return `My language is ${this.language} and my framework is ${this.framework}`;
+    }
+}
+const malik2 = new WebDev('Abdulmalik', 25, 'Hip-Hop');
+console.log(malik2.getLanguage());
+class Guitarist {
+    constructor(name, instrument) {
+        this.name = name;
+        this.instrument = instrument;
+        this.name = name;
+        this.instrument = instrument;
+    }
+    play(action) {
+        return `${this.name} is ${action}ing on the ${this.instrument}`;
+    }
+}
+const malik3 = new Guitarist('Abdulmalik', 'Guitar');
+console.log(malik3.play('play'));
+// Static Class Members
+class Peeps {
+    static getCount() {
+        return Peeps.count;
+    }
+    constructor(name) {
+        this.name = name;
+        this.name = name;
+        this.id = ++Peeps.count;
+    }
+}
+Peeps.count = 0;
+// Getters and Setters
+class Bands {
+    constructor() {
+        this.dataState = [];
+    }
+    get data() {
+        return this.dataState;
+    }
+    set data(value) {
+        if (Array.isArray(value) && value.every((item) => typeof item === 'string')) {
+            this.dataState = value;
+            return;
+        }
+        else {
+            throw new Error('Data must be an array of strings');
+        }
+    }
+}
