@@ -286,3 +286,62 @@ class Bands {
     }
   }
 }
+
+// Index Signatures
+
+interface TransactionObj {
+  readonly [key: string]: number;
+  Pizza: number;
+  Books: number;
+  Job: number;
+}
+
+const todaysTransactions: TransactionObj = {
+  Pizza: 10,
+  Books: 20,
+  Job: 30,
+};
+
+let prop: string = 'Pizza';
+
+console.log((todaysTransactions['Books'] = 40));
+
+const todaysNet = (transactions: TransactionObj): number => {
+  let total: number = 0;
+  for (let prop in transactions) {
+    total += transactions[prop];
+  }
+  return total;
+};
+
+interface Student {
+  // [key: string]: string | number |number[] | undefined;
+  name: string;
+  GPA: number;
+  classes?: number[];
+}
+
+const student: Student = {
+  name: 'Abdulmalik',
+  GPA: 4.27,
+  classes: [100, 200, 300, 400, 500],
+};
+
+// KeyOf Assertions
+
+
+for (const key in student) {
+  console.log(key, student[key as keyof Student]);
+}
+
+console.log(typeof student)
+
+Object.keys(student).map(key => {
+  console.log(key, student[key as keyof typeof student]);
+});
+
+const logStudentKey = (student: Student, key: keyof Student): void => {
+  console.log(`Student ${key} is ${student[key]}`);
+}
+
+console.log(logStudentKey(student, 'name'));
