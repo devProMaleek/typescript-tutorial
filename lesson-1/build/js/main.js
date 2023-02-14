@@ -5,6 +5,15 @@
 // let isMale = true;
 // let hobbies = ['football', 'coding', 'reading'];
 // let address = ['Nigeria', 'Lagos', 'Ikeja'];
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 // console.log(address, hobbies, isMale, age, username);
 // let a: number = 10;
 // let b: number = 20;
@@ -237,3 +246,32 @@ const isTrue = (arg) => {
     }
     return { arg, is: !!arg };
 };
+const updateAssignment = (assignment, changes) => {
+    return Object.assign(Object.assign({}, assignment), changes);
+};
+const assignment1 = {
+    studentId: '123',
+    title: 'Assignment 1',
+    grade: 100,
+};
+console.log(updateAssignment(assignment1, { grade: 90, verified: true }));
+// Record Utility Type
+const hexColorMap = {
+    red: '#ff0000',
+    green: '#00ff00',
+    blue: '#0000ff',
+};
+// Return Type Utility Type
+const createNewAssign = (title, points) => {
+    return { title, points };
+};
+const fetchUser = () => __awaiter(void 0, void 0, void 0, function* () {
+    const data = yield fetch('https://jsonplaceholder.typicode.com/users')
+        .then((response) => response.json())
+        .catch((error) => {
+        if (error instanceof Error) {
+            console.log(error.message);
+        }
+    });
+    return data;
+});

@@ -372,3 +372,68 @@ const isTrue = <T>(arg: T): { arg: T; is: boolean } => {
   }
   return { arg, is: !!arg };
 };
+
+// UTILITY TYPES
+
+// Partial Utility Type
+interface Assignment {
+  studentId: string;
+  title: string;
+  grade: number;
+  verified?: boolean;
+}
+
+const updateAssignment = (assignment: Assignment, changes: Partial<Assignment>): Assignment => {
+  return { ...assignment, ...changes };
+};
+
+const assignment1: Assignment = {
+  studentId: '123',
+  title: 'Assignment 1',
+  grade: 100,
+};
+
+console.log(updateAssignment(assignment1, { grade: 90, verified: true }));
+
+// Record Utility Type
+
+const hexColorMap: Record<string, string> = {
+  red: '#ff0000',
+  green: '#00ff00',
+  blue: '#0000ff',
+};
+
+// NonNullable Utility Type
+type AllPossibleGrades = 'Dave' | 'Abdulmalik' | null | undefined;
+
+type NamesOnly = NonNullable<AllPossibleGrades>;
+
+// Return Type Utility Type
+const createNewAssign = (title: string, points: number) => {
+  return { title, points };
+};
+
+type AssignmentType = ReturnType<typeof createNewAssign>;
+
+// Awaited Utility Type
+
+interface User {
+  id: number;
+  name: string;
+  username: string;
+  email: string;
+}
+
+const fetchUser = async (): Promise<User[]> => {
+  const data = await fetch('https://jsonplaceholder.typicode.com/users')
+    .then((response) => response.json())
+    .catch((error) => {
+      if (error instanceof Error) {
+        console.log(error.message);
+      }
+    });
+  return data;
+};
+
+
+type FetchUsersReturnType = Awaited<ReturnType<typeof fetchUser>>;
