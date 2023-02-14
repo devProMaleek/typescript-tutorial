@@ -329,19 +329,46 @@ const student: Student = {
 
 // KeyOf Assertions
 
-
 for (const key in student) {
   console.log(key, student[key as keyof Student]);
 }
 
-console.log(typeof student)
+console.log(typeof student);
 
-Object.keys(student).map(key => {
+Object.keys(student).map((key) => {
   console.log(key, student[key as keyof typeof student]);
 });
 
 const logStudentKey = (student: Student, key: keyof Student): void => {
   console.log(`Student ${key} is ${student[key]}`);
-}
+};
 
 console.log(logStudentKey(student, 'name'));
+
+// Generics
+
+const echo = <T>(arg: T): T => arg;
+
+function echo2<T>(arg: T): T {
+  return arg;
+}
+
+const isObj = <T>(arg: T): boolean => {
+  return typeof arg === 'object' && !Array.isArray(arg) && arg !== null;
+};
+
+console.log(isObj('Abdulmalik'));
+console.log(isObj(true));
+console.log(isObj([1, 2, 3, 4, 5]));
+console.log(isObj({}));
+console.log(isObj(null));
+
+const isTrue = <T>(arg: T): { arg: T; is: boolean } => {
+  if (Array.isArray(arg) && !arg.length) {
+    return { arg: arg, is: false };
+  }
+  if (isObj(arg) && !Object.keys(arg as keyof T).length) {
+    return { arg: arg, is: false };
+  }
+  return { arg, is: !!arg };
+};

@@ -208,10 +208,32 @@ for (const key in student) {
     console.log(key, student[key]);
 }
 console.log(typeof student);
-Object.keys(student).map(key => {
+Object.keys(student).map((key) => {
     console.log(key, student[key]);
 });
 const logStudentKey = (student, key) => {
     console.log(`Student ${key} is ${student[key]}`);
 };
 console.log(logStudentKey(student, 'name'));
+// Generics
+const echo = (arg) => arg;
+function echo2(arg) {
+    return arg;
+}
+const isObj = (arg) => {
+    return typeof arg === 'object' && !Array.isArray(arg) && arg !== null;
+};
+console.log(isObj('Abdulmalik'));
+console.log(isObj(true));
+console.log(isObj([1, 2, 3, 4, 5]));
+console.log(isObj({}));
+console.log(isObj(null));
+const isTrue = (arg) => {
+    if (Array.isArray(arg) && !arg.length) {
+        return { arg: arg, is: false };
+    }
+    if (isObj(arg) && !Object.keys(arg).length) {
+        return { arg: arg, is: false };
+    }
+    return { arg, is: !!arg };
+};
